@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import mandacaru.dao.UsuarioDAO;
-import mandacaru.dao.UsuarioMemoryDAO;
+import mandacaru.dao.UsuarioJDBCDAO;
 import mandacaru.model.Usuario;
 
 @Service
 public class UsuarioService {
 
-	UsuarioDAO usuarioDAO = new UsuarioMemoryDAO();
+	UsuarioDAO usuarioDAO = new UsuarioJDBCDAO();
 
 	public void save(int id, Usuario entity) {
 		if(id != 0) {

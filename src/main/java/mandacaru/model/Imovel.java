@@ -95,7 +95,6 @@ public class Imovel {
 
 	public Imovel(int id, String titulo, String endereco, int metros_quadrados_de_terreno, int quantidade_de_quartos,
 			int quantidade_de_banheiros, int quantidade_de_vagas_de_garagem, double preco, String status, int dono) {
-		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.endereco = endereco;

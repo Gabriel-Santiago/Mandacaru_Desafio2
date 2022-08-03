@@ -11,7 +11,7 @@ public class Usuario {
 	private String cpf;
 	private String telefone;
 	private String endereco;
-	private Imovel anuncios[];
+	private int anuncios[];
 	
 	public int getId() {
 		return id;
@@ -69,16 +69,16 @@ public class Usuario {
 		this.endereco = endereco;
 	}
 
-	public Imovel[] getAnuncios() {
+	public int[] getAnuncios() {
 		return anuncios;
 	}
 
-	public void setAnuncios(Imovel[] anuncios) {
+	public void setAnuncios(int[] anuncios) {
 		this.anuncios = anuncios;
 	}
 
 	public Usuario(int id, String nome, String email, String senha, String cpf, String telefone, String endereco,
-			Imovel[] anuncios) {
+			int[] anuncios) {
 		super();
 		this.id = id;
 		this.nome = nome;

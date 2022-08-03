@@ -5,13 +5,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import mandacaru.dao.ImovelDAO;
-import mandacaru.dao.ImovelMemoryDAO;
+import mandacaru.dao.ImovelJDBCDAO;
 import mandacaru.model.Imovel;
 
 @Service
 public class ImovelService {
 
-	ImovelDAO imovelDAO = new ImovelMemoryDAO();
+	ImovelDAO imovelDAO = new ImovelJDBCDAO();
 
 	public void save(int id, Imovel entity) {
 		if(id != 0) {
