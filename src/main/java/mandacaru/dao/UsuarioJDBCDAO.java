@@ -34,18 +34,20 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 
 	@Override
 	public void delete(int id) {
-		String sql = "delete from products where id = ?";
+		String sql = "delete from usuarios where id = ?";
 		jdbcTemplate.update(sql, id);
 	}
 
 	@Override
 	public Usuario find(int id) {
-		String sql = "select * from products where id = ?";
-		// não sei como retornar isso aqui por enquanto
+		String sql = "select * from usuarios where id = ?";
+		
+		// deixar claro que isso tudo aqui ta errado
+		
 		try {
 			return jdbcTemplate.queryForObject(sql,
 					(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
-							rs.getString("email"), rs.getInt("anuncios")), id);
+							rs.getString("email"), rs.getString("telefone"), (int[]) rs.getArray("anuncios").getArray()), id);
 		} catch (Exception e) {
 			return null;
 		}
@@ -53,11 +55,11 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 
 	@Override
 	public List<Usuario> findall() {
-		String sql = "select * from products";
+		String sql = "select * from usuarios";
 
 		return jdbcTemplate.query(sql,
 				(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
-						rs.getString("email"), rs.getArray("anuncios")));
+						rs.getString("email"), rs.getString("telefone"), (int[]) rs.getArray("anuncios").getArray()));
 
 	}
 

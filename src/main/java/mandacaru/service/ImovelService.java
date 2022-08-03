@@ -2,16 +2,17 @@ package mandacaru.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mandacaru.dao.ImovelDAO;
-import mandacaru.dao.ImovelJDBCDAO;
 import mandacaru.model.Imovel;
 
 @Service
 public class ImovelService {
 
-	ImovelDAO imovelDAO = new ImovelJDBCDAO();
+	@Autowired
+	ImovelDAO imovelDAO;
 
 	public void save(int id, Imovel entity) {
 		if(id != 0) {

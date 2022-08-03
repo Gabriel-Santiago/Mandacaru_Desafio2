@@ -1,5 +1,8 @@
 package mandacaru.model;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+
+@AutoConfiguration
 public class Imovel {
 	
 	private int id;

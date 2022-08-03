@@ -13,6 +13,8 @@ public class ImovelJDBCDAO implements ImovelDAO {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
+	
+	//aqui não ta terminado falta o dono e o status tirando por esse o resto funciona
 
 	@Override
 	public void save(Imovel entity) {
@@ -21,7 +23,7 @@ public class ImovelJDBCDAO implements ImovelDAO {
 
 		if (entity.getId() == 0) {
 			jdbcTemplate.update(insert_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
-					entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco()  );
+					entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco());
 
 		} else {
 			jdbcTemplate.update(update_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
@@ -32,13 +34,13 @@ public class ImovelJDBCDAO implements ImovelDAO {
 
 	@Override
 	public void delete(int id) {
-		String sql = "delete from products where id = ?";
+		String sql = "delete from imoveis where id = ?";
 		jdbcTemplate.update(sql, id);
 	}
 
 	@Override
 	public Imovel find(int id) {
-		String sql = "select * from products where id = ?";
+		String sql = "select * from imoveis where id = ?";
 
 		try {
 			return jdbcTemplate.queryForObject(sql,
@@ -52,7 +54,7 @@ public class ImovelJDBCDAO implements ImovelDAO {
 
 	@Override
 	public List<Imovel> findall() {
-		String sql = "select * from products";
+		String sql = "select * from imoveis";
 
 		return jdbcTemplate.query(sql,
 				(rs, rowNum) -> new Imovel(rs.getInt("id"), rs.getString("titulo"), rs.getString("endereco"), rs.getInt("metros_quadrados_de_terreno"),

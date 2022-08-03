@@ -18,12 +18,12 @@ import mandacaru.model.Imovel;
 import mandacaru.service.ImovelService;
  
 @RestController
-@RequestMapping(path = "/api/imoveis")
+@RequestMapping(path = "/api/imoveis") 
 public class ImovelController {
  
     @Autowired
     ImovelService service;
- 
+    
     @GetMapping
     public ResponseEntity<List<Imovel>> findall() {
         return new ResponseEntity<List<Imovel>>(service.findall(), HttpStatus.OK);
@@ -34,6 +34,7 @@ public class ImovelController {
         return new ResponseEntity<Imovel>(service.find(id), HttpStatus.OK);
     }
  
+    
     @PostMapping
     public void save(@RequestBody Imovel imovel) {
         service.save(0, imovel);

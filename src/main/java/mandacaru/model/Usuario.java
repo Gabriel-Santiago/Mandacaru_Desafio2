@@ -2,6 +2,9 @@ package mandacaru.model;
 
 import java.util.Arrays;
 
+import org.springframework.boot.autoconfigure.AutoConfiguration;
+
+@AutoConfiguration
 public class Usuario {
 	
 	private int id;

@@ -2,16 +2,17 @@ package mandacaru.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import mandacaru.dao.UsuarioDAO;
-import mandacaru.dao.UsuarioJDBCDAO;
 import mandacaru.model.Usuario;
 
 @Service
 public class UsuarioService {
 
-	UsuarioDAO usuarioDAO = new UsuarioJDBCDAO();
+	@Autowired
+	UsuarioDAO usuarioDAO;
 
 	public void save(int id, Usuario entity) {
 		if(id != 0) {
