@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class Usuario {
 	
+	private int id;
 	private String nome;
 	private String email;
 	private String senha;
@@ -11,6 +12,14 @@ public class Usuario {
 	private String telefone;
 	private String endereco;
 	private Imovel anuncios[];
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
 	
 	public String getNome() {
 		return nome;
@@ -68,9 +77,10 @@ public class Usuario {
 		this.anuncios = anuncios;
 	}
 
-	public Usuario(String nome, String email, String senha, String cpf, String telefone, String endereco,
+	public Usuario(int id, String nome, String email, String senha, String cpf, String telefone, String endereco,
 			Imovel[] anuncios) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
@@ -86,10 +96,8 @@ public class Usuario {
 
 	@Override
 	public String toString() {
-		return "usuario [nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf + ", telefone="
-				+ telefone + ", endereco=" + endereco + ", anuncios=" + Arrays.toString(anuncios) + "]";
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
+				+ ", telefone=" + telefone + ", endereco=" + endereco + ", anuncios=" + Arrays.toString(anuncios) + "]";
 	}
-	
-	
-	
+
 }
