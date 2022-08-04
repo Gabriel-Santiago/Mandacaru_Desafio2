@@ -13,13 +13,11 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 
 	@Autowired
 	JdbcTemplate jdbcTemplate;
-
-	//codigo em sql falta mudar
 	
 	@Override
 	public void save(Usuario entity) {
-		String insert_sql = "insert into usuarios (nome, senha, enderco, cpf, telefone, email) values (?, ?, ?, ?, ?, ?)";
-		String update_sql = "update usuarios set titulo = ?, endereco = ?, metros_quadrados_de_terreno = ?, quantidade_de_quartos = ?, quantidade_de_banheiros = ?, quantidade_de_vagas_de_garagem = ?, preco = ? where id = ?";
+		String insert_sql = "insert into usuarios (nome, senha, endereco, cpf, telefone, email) values (?, ?, ?, ?, ?, ?)";
+		String update_sql = "update usuarios set nome = ?, senha = ?, endereco = ?, cpf = ?, telefone = ?, email = ? where id = ?";
 
 		if (entity.getId() == 0) {
 			jdbcTemplate.update(insert_sql, entity.getNome(), entity.getSenha(), entity.getEndereco(), entity.getCpf(), entity.getTelefone(), entity.getEmail());
@@ -41,12 +39,14 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 	public Usuario find(int id) {
 		String sql = "select * from usuarios where id = ?";
 		
-		// deixar claro que isso tudo aqui ta errado
-		
 		try {
 			return jdbcTemplate.queryForObject(sql,
 					(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
 							rs.getString("email"), rs.getString("telefone"), (int[]) rs.getArray("anuncios").getArray()), id);
+		} catch (NullPointerException e) {
+			return jdbcTemplate.queryForObject(sql,
+					(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
+							rs.getString("email"), rs.getString("telefone"), null), id);
 		} catch (Exception e) {
 			return null;
 		}
@@ -55,10 +55,17 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 	@Override
 	public List<Usuario> findall() {
 		String sql = "select * from usuarios";
-
-		return jdbcTemplate.query(sql,
-				(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
-						rs.getString("email"), rs.getString("telefone"), (int[]) rs.getArray("anuncios").getArray()));
+		
+		try {
+			return jdbcTemplate.query(sql,
+					(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
+							rs.getString("email"), rs.getString("telefone"), (int[]) rs.getArray("anuncios").getArray()));
+		}
+		catch(NullPointerException e) {
+			return jdbcTemplate.query(sql,
+					(rs, rowNum) -> new Usuario(rs.getInt("id") ,rs.getString("nome"), rs.getString("Senha"), rs.getString("endereco"), rs.getString("cpf"),
+							rs.getString("email"), rs.getString("telefone"), null));
+		}
 
 	}
 
