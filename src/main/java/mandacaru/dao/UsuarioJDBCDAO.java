@@ -18,12 +18,11 @@ public class UsuarioJDBCDAO implements UsuarioDAO {
 	
 	@Override
 	public void save(Usuario entity) {
-		String insert_sql = "insert into imovel (titulo, endereco, metros_quadrados_de_terreno, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_vagas_de_garagem, preco) values (?, ?, ?, ?, ?, ?, ?)";
-		String update_sql = "update imovel set titulo = ?, endereco = ?, metros_quadrados_de_terreno = ?, quantidade_de_quartos = ?, quantidade_de_banheiros = ?, quantidade_de_vagas_de_garagem = ?, preco = ? where id = ?";
+		String insert_sql = "insert into usuarios (nome, senha, enderco, cpf, telefone, email) values (?, ?, ?, ?, ?, ?)";
+		String update_sql = "update usuarios set titulo = ?, endereco = ?, metros_quadrados_de_terreno = ?, quantidade_de_quartos = ?, quantidade_de_banheiros = ?, quantidade_de_vagas_de_garagem = ?, preco = ? where id = ?";
 
 		if (entity.getId() == 0) {
-			jdbcTemplate.update(insert_sql, entity.getNome(), entity.getSenha(), entity.getEndereco(), entity.getCpf(), entity.getTelefone(), entity.getEmail(),
-					entity.getAnuncios());
+			jdbcTemplate.update(insert_sql, entity.getNome(), entity.getSenha(), entity.getEndereco(), entity.getCpf(), entity.getTelefone(), entity.getEmail());
 
 		} else {
 			jdbcTemplate.update(update_sql, entity.getNome(), entity.getSenha(), entity.getEndereco(), entity.getCpf(), entity.getTelefone(), entity.getEmail(),
