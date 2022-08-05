@@ -14,22 +14,28 @@ public class ImovelJDBCDAO implements ImovelDAO {
 	@Autowired
 	JdbcTemplate jdbcTemplate;
 	
-	//aqui não ta terminado falta o dono e o status tirando por esse o resto funciona
 
 	@Override
 	public void save(Imovel entity) {
-		String insert_sql = "insert into imovel (titulo, endereco, metros_quadrados_de_terreno, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_vagas_de_garagem, preco) values (?, ?, ?, ?, ?, ?, ?)";
-		String update_sql = "update imovel set titulo = ?, endereco = ?, metros_quadrados_de_terreno = ?, quantidade_de_quartos = ?, quantidade_de_banheiros = ?, quantidade_de_vagas_de_garagem = ?, preco = ? where id = ?";
+		String insert_sql = "insert into imoveis (titulo, endereco, metros_quadrados_de_terreno, quantidade_de_quartos, quantidade_de_banheiros, quantidade_de_vagas_de_garagem, preco, dono) values (?, ?, ?, ?, ?, ?, ?,?)";
+		String update_sql = "update imoveis set titulo = ?, endereco = ?, metros_quadrados_de_terreno = ?, quantidade_de_quartos = ?, quantidade_de_banheiros = ?, quantidade_de_vagas_de_garagem = ?, preco = ?, dono = ? where id = ?";
+		String check_sql = "select * from usuarios where id = " + entity.getDono();
 
-		if (entity.getId() == 0) {
-			jdbcTemplate.update(insert_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
-					entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco());
+			
+		if(!jdbcTemplate.queryForList(check_sql).isEmpty()) {
+			
+			if (entity.getId() == 0) {
+				jdbcTemplate.update(insert_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
+						entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco(), entity.getDono());
 
-		} else {
-			jdbcTemplate.update(update_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
-					entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco(), entity.getId());
-
+			} else {
+				jdbcTemplate.update(update_sql, entity.getTitulo(), entity.getEndereco(), entity.getMetros_quadrados_de_terreno(), entity.getQuantidade_de_quartos(),
+						entity.getQuantidade_de_banheiros(), entity.getQuantidade_de_vagas_de_garagem(), entity.getPreco(), entity.getDono(), entity.getId());
+				}
+			
 		}
+		
+	
 	}
 
 	@Override
