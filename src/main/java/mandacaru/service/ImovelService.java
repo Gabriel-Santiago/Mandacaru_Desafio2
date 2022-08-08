@@ -1,40 +1,56 @@
 package mandacaru.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import mandacaru.dao.ImovelDAO;
 import mandacaru.model.Imovel;
+import mandacaru.model.Usuario;
+import mandacaru.repository.ImovelRepository;
+import mandacaru.repository.UsuarioRepository;
 
 @Service
 public class ImovelService {
 
 	@Autowired
-	ImovelDAO imovelDAO;
+	ImovelRepository imovelRepository;
+	
+	@Autowired
+	UsuarioRepository usuarioRepository;
 
-	public void save(int id, Imovel entity) {
-		if(id != 0) {
-			entity.setId(id);
-		}
-		imovelDAO.save(entity);
+	public void update(int id, Imovel entity) {
+		Imovel imovel = find(id);		
+		imovel.setTitulo(entity.getTitulo());
+		
+		imovelRepository.save(imovel);				
+	}
+	
+	public void save(int usuario_id, Imovel entity) {
+		Usuario usuario = usuarioRepository.findById(usuario_id).get();
+		entity.setUsuario(usuario);
+		imovelRepository.save(entity);				
 	}
 
 	public void delete(int id) {
-		imovelDAO.delete(id);
+		Imovel imovel = find(id);
+		imovelRepository.delete(imovel);
 	}
 
 	public Imovel find(int id) {
-		if(id < 1) {
+		if (id < 1) {
 			return null;
 		}
-		
-		return imovelDAO.find(id);
+		Optional<Imovel> imovel = imovelRepository.findById(id);
+
+		if (imovel.isPresent()) {
+			return imovel.get();
+		}
+		return null;
 	}
 
-	public List<Imovel> findall() {
-		return imovelDAO.findall();
+	public List<Imovel> findAll(int usuario_id) {
+		return imovelRepository.findByUsuarioId(usuario_id);
 	}
-
 }

@@ -18,34 +18,33 @@ import mandacaru.model.Imovel;
 import mandacaru.service.ImovelService;
  
 @RestController
-@RequestMapping(path = "/api/imoveis") 
+@RequestMapping(path = "/api") 
 public class ImovelController {
  
     @Autowired
     ImovelService service;
     
-    @GetMapping
-    public ResponseEntity<List<Imovel>> findall() {
-        return new ResponseEntity<List<Imovel>>(service.findall(), HttpStatus.OK);
+    @GetMapping("usuarios/{id}/imoveis")
+    public ResponseEntity<List<Imovel>> findall(@PathVariable(value = "id") int id) {
+        return new ResponseEntity<List<Imovel>>(service.findAll(id), HttpStatus.OK);
     }
  
-    @GetMapping(path = "{id}")
+    @GetMapping(path = "imoveis/{id}")
     public ResponseEntity<Imovel> find(@PathVariable("id") int id) {
         return new ResponseEntity<Imovel>(service.find(id), HttpStatus.OK);
     }
- 
     
-    @PostMapping
-    public void save(@RequestBody Imovel imovel) {
-        service.save(0, imovel);
+    @PostMapping("/usuarios/{id}/imoveis")
+    public void save(@PathVariable("id") int usuario_id,@RequestBody Imovel imovel) {
+        service.save(usuario_id, imovel);
     }
  
-    @PutMapping(path = "{id}")
+    @PutMapping("/imoveis/{id}")
     public void update(@PathVariable("id") int id, @RequestBody Imovel imovel) {
         service.save(id, imovel);
     }
  
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping("/imoveis/{id}")
     public void delete(@PathVariable("id") int id) {
         service.delete(id);
     }

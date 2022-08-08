@@ -1,12 +1,17 @@
 package mandacaru.model;
 
-import java.util.Arrays;
+import java.util.List;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
-@AutoConfiguration
+@Entity
 public class Usuario {
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String nome;
 	private String email;
@@ -14,8 +19,11 @@ public class Usuario {
 	private String cpf;
 	private String telefone;
 	private String endereco;
-	private int anuncios[];
-	
+
+
+	@OneToMany(mappedBy = "usuario")
+	private List<Imovel> imovels;
+
 	public int getId() {
 		return id;
 	}
@@ -23,7 +31,7 @@ public class Usuario {
 	public void setId(int id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -72,16 +80,22 @@ public class Usuario {
 		this.endereco = endereco;
 	}
 
-	public int[] getAnuncios() {
-		return anuncios;
+	public List<Imovel> getImovels() {
+		return imovels;
 	}
 
-	public void setAnuncios(int[] anuncios) {
-		this.anuncios = anuncios;
+	public void setImovels(List<Imovel> imovels) {
+		this.imovels = imovels;
+	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
+				+ ", telefone=" + telefone + ", endereco=" + endereco + ", imovels=" + imovels + "]";
 	}
 
 	public Usuario(int id, String nome, String email, String senha, String cpf, String telefone, String endereco,
-			int[] anuncios) {
+			List<Imovel> imovels) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -90,17 +104,10 @@ public class Usuario {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.endereco = endereco;
-		this.anuncios = anuncios;
+		this.imovels = imovels;
 	}
 
 	public Usuario() {
 		super();
 	}
-
-	@Override
-	public String toString() {
-		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", telefone=" + telefone + ", endereco=" + endereco + ", anuncios=" + Arrays.toString(anuncios) + "]";
-	}
-
 }

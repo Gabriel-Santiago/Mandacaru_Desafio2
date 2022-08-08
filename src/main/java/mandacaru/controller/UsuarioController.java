@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import mandacaru.model.Usuario;
 import mandacaru.service.UsuarioService;
  
 @RestController
-@RequestMapping(path = "/api/usuarios")
+@RequestMapping(path = "/api")
 public class UsuarioController {
  
     @Autowired
@@ -26,13 +27,24 @@ public class UsuarioController {
  
     @GetMapping
     public ResponseEntity<List<Usuario>> findall() {
-        return new ResponseEntity<List<Usuario>>(service.findall(), HttpStatus.OK);
+        return new ResponseEntity<List<Usuario>>(service.findAll(), HttpStatus.OK);
     }
  
     @GetMapping(path = "{id}")
     public ResponseEntity<Usuario> find(@PathVariable("id") int id) {
         return new ResponseEntity<Usuario>(service.find(id), HttpStatus.OK);
     }
+    
+    @GetMapping(path = "/search")
+	public ResponseEntity<Usuario> findByName(@RequestParam("name") String nome) {
+		Usuario usuario = service.findByName(nome);
+		
+		if(usuario != null) {
+			return new ResponseEntity<Usuario>(usuario, HttpStatus.OK);	
+		} else {
+			return new ResponseEntity<Usuario>(HttpStatus.NOT_FOUND);
+		}
+	}
  
     @PostMapping
     public void save(@RequestBody Usuario usuario) {

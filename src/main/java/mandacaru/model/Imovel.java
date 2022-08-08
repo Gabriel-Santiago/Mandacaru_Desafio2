@@ -1,10 +1,18 @@
 package mandacaru.model;
 
-import org.springframework.boot.autoconfigure.AutoConfiguration;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
-@AutoConfiguration
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+@Entity
 public class Imovel {
 	
+	@Id
+	@GeneratedValue
 	private int id;
 	private String titulo;
 	private String endereco;
@@ -14,7 +22,11 @@ public class Imovel {
 	private int quantidade_de_vagas_de_garagem;
 	private double preco;
 	private String status;
-	private int dono;
+	
+	@ManyToOne
+	@JoinColumn(name = "usuario_id")
+	@JsonIgnore
+	private Usuario usuario;
 	
 	public int getId() {
 		return id;
@@ -88,16 +100,26 @@ public class Imovel {
 		this.status = status;
 	}
 
-	public int getDono() {
-		return dono;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setDono(int dono) {
-		this.dono = dono;
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	@Override
+	public String toString() {
+		return "Imovel [id=" + id + ", titulo=" + titulo + ", endereco=" + endereco + ", metros_quadrados_de_terreno="
+				+ metros_quadrados_de_terreno + ", quantidade_de_quartos=" + quantidade_de_quartos
+				+ ", quantidade_de_banheiros=" + quantidade_de_banheiros + ", quantidade_de_vagas_de_garagem="
+				+ quantidade_de_vagas_de_garagem + ", preco=" + preco + ", status=" + status + "]";
 	}
 
 	public Imovel(int id, String titulo, String endereco, int metros_quadrados_de_terreno, int quantidade_de_quartos,
-			int quantidade_de_banheiros, int quantidade_de_vagas_de_garagem, double preco, String status, int dono) {
+			int quantidade_de_banheiros, int quantidade_de_vagas_de_garagem, double preco, String status,
+			Usuario usuario) {
+		super();
 		this.id = id;
 		this.titulo = titulo;
 		this.endereco = endereco;
@@ -107,19 +129,10 @@ public class Imovel {
 		this.quantidade_de_vagas_de_garagem = quantidade_de_vagas_de_garagem;
 		this.preco = preco;
 		this.status = status;
-		this.dono = dono;
+		this.usuario = usuario;
 	}
 
 	public Imovel() {
 		super();
 	}
-
-	@Override
-	public String toString() {
-		return "Imovel [id=" + id + ", titulo=" + titulo + ", endereco=" + endereco + ", metros_quadrados_de_terreno="
-				+ metros_quadrados_de_terreno + ", quantidade_de_quartos=" + quantidade_de_quartos
-				+ ", quantidade_de_banheiros=" + quantidade_de_banheiros + ", quantidade_de_vagas_de_garagem="
-				+ quantidade_de_vagas_de_garagem + ", preco=" + preco + ", status=" + status + ", dono=" + dono + "]";
-	}
-
 }
