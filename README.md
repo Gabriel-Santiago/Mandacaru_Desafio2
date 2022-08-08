@@ -14,17 +14,17 @@
 - [x] DAO
 	- [x] imovel
 	- [x] usuario
-- [ ] JDBC
+- [ ] JPA
 	- [ ] imovel
-	- [x] usuario
+	- [ ] usuario
 - [ ] Service
 	- [ ] imovel
-	- [x] usuario
+	- [ ] usuario
 - [ ] Controller
 	- [ ] imovel
-	- [x] usuario
+	- [ ] usuario
 - [ ] CRUD Postman
-	- [ ] imovel
+	- [x] imovel
 	- [x] usuario
 	
 ##### opcional
