@@ -24,7 +24,7 @@ public class ImovelController {
     @Autowired
     ImovelService service;
     
-    @GetMapping("usuarios/{id}/imoveis")
+    @GetMapping(path = "usuarios/{id}/imoveis")
     public ResponseEntity<List<Imovel>> findall(@PathVariable(value = "id") int id) {
         return new ResponseEntity<List<Imovel>>(service.findAll(id), HttpStatus.OK);
     }
@@ -34,17 +34,17 @@ public class ImovelController {
         return new ResponseEntity<Imovel>(service.find(id), HttpStatus.OK);
     }
     
-    @PostMapping("/usuarios/{id}/imoveis")
+    @PostMapping(path = "/usuarios/{id}/imoveis")
     public void save(@PathVariable("id") int usuario_id,@RequestBody Imovel imovel) {
         service.save(usuario_id, imovel);
     }
  
-    @PutMapping("/imoveis/{id}")
+    @PutMapping(path = "/imoveis/{id}")
     public void update(@PathVariable("id") int id, @RequestBody Imovel imovel) {
-        service.save(id, imovel);
+        service.update(id, imovel);
     }
  
-    @DeleteMapping("/imoveis/{id}")
+    @DeleteMapping(path = "/imoveis/{id}")
     public void delete(@PathVariable("id") int id) {
         service.delete(id);
     }

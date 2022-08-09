@@ -55,7 +55,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/usuarios/search",
+							"raw": "http://localhost:8080/api/usuarios/search?nome=",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -65,6 +65,12 @@
 								"api",
 								"usuarios",
 								"search"
+							],
+							"query": [
+								{
+									"key": "nome",
+									"value": ""
+								}
 							]
 						}
 					},
@@ -106,7 +112,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"nome\":\"\",\r\n\"senha\":\"\",\r\n\"endereco\":\"\",\r\n\"cpf\":\"\",\r\n\"telefone\":\"\",\r\n\"email\":\"\"\r\n}",
+							"raw": "{\n\"nome\":\"\",\n\"senha\":\"\",\n\"endereco\":\"\",\n\"cpf\":\"\",\n\"telefone\":\"\",\n\"email\":\"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -259,7 +265,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/feedbacks/{{id}}",
+							"raw": "http://localhost:8080/api/imoveis/{{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -267,7 +273,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"feedbacks",
+								"imoveis",
 								"{{id}}"
 							]
 						}
@@ -280,7 +286,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/feedbacks/{{id}}",
+							"raw": "http://localhost:8080/api/imoveis/{{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -288,7 +294,7 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"feedbacks",
+								"imoveis",
 								"{{id}}"
 							]
 						}
