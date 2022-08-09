@@ -6,5 +6,5 @@ import mandacaru.model.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
-	Usuario findFirstByName(String name);
+	Usuario findFirstByNome(String nome);
 }

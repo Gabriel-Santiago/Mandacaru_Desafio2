@@ -47,7 +47,7 @@ public class UsuarioService {
 		if (str.length() < 3) {
 			return null;
 		}
-		return usuarioRepository.findFirstByName(str);
+		return usuarioRepository.findFirstByNome(str);
 	}
 
 }

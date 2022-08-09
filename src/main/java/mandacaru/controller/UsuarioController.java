@@ -19,7 +19,7 @@ import mandacaru.model.Usuario;
 import mandacaru.service.UsuarioService;
  
 @RestController
-@RequestMapping(path = "/api")
+@RequestMapping(path = "/api/usuarios")
 public class UsuarioController {
  
     @Autowired
@@ -36,7 +36,7 @@ public class UsuarioController {
     }
     
     @GetMapping(path = "/search")
-	public ResponseEntity<Usuario> findByName(@RequestParam("name") String nome) {
+	public ResponseEntity<Usuario> findByName(@RequestParam("nome") String nome) {
 		Usuario usuario = service.findByName(nome);
 		
 		if(usuario != null) {
