@@ -4,14 +4,17 @@ import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="usuarios")
 public class Usuario {
 	
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String nome;
 	private String email;
@@ -22,7 +25,7 @@ public class Usuario {
 
 
 	@OneToMany(mappedBy = "usuario")
-	private List<Imovel> imovels;
+	private List<Imovel> imoveis;
 
 	public int getId() {
 		return id;
@@ -80,22 +83,22 @@ public class Usuario {
 		this.endereco = endereco;
 	}
 
-	public List<Imovel> getImovels() {
-		return imovels;
+	public List<Imovel> getImoveis() {
+		return imoveis;
 	}
 
-	public void setImovels(List<Imovel> imovels) {
-		this.imovels = imovels;
+	public void setImoveis(List<Imovel> imoveis) {
+		this.imoveis = imoveis;
 	}
 
 	@Override
 	public String toString() {
 		return "Usuario [id=" + id + ", nome=" + nome + ", email=" + email + ", senha=" + senha + ", cpf=" + cpf
-				+ ", telefone=" + telefone + ", endereco=" + endereco + ", imovels=" + imovels + "]";
+				+ ", telefone=" + telefone + ", endereco=" + endereco + ", imovels=" + imoveis + "]";
 	}
 
 	public Usuario(int id, String nome, String email, String senha, String cpf, String telefone, String endereco,
-			List<Imovel> imovels) {
+			List<Imovel> imoveis) {
 		super();
 		this.id = id;
 		this.nome = nome;
@@ -104,7 +107,7 @@ public class Usuario {
 		this.cpf = cpf;
 		this.telefone = telefone;
 		this.endereco = endereco;
-		this.imovels = imovels;
+		this.imoveis = imoveis;
 	}
 
 	public Usuario() {

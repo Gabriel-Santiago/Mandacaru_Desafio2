@@ -1,44 +1,15 @@
 {
 	"info": {
-		"_postman_id": "477fc8f4-513c-4bfc-acbc-d009816afdd0",
-		"name": "atividade 2",
+		"_postman_id": "3878d8ef-16ba-46d4-b887-4b5da2a935af",
+		"name": "Atividade 2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
-			"name": "usuarios",
+			"name": "Usuarios",
 			"item": [
 				{
-					"name": "create",
-					"request": {
-						"method": "POST",
-						"header": [],
-						"body": {
-							"mode": "raw",
-							"raw": "{\r\n\"nome\":\"maciel\",\r\n\"senha\":\"aruaru\",\r\n\"endereco\":\"avav\",\r\n\"cpf\":\"1231241234\",\r\n\"telefone\":\"2312312\",\r\n\"email\":\"fdsfdsfd@sfdsf.com\"\r\n}",
-							"options": {
-								"raw": {
-									"language": "json"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/api/usuarios",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"usuarios"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "read",
+					"name": "Get all users",
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -58,13 +29,55 @@
 					"response": []
 				},
 				{
-					"name": "update",
+					"name": "Get user",
 					"request": {
-						"method": "PUT",
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get user by name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add user",
+					"request": {
+						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"nome\":\"dsasd\",\r\n\"senha\":\"csahds\",\r\n\"endereco\":\"dsdsadas\",\r\n\"cpf\":\"testetes\",\r\n\"telefone\":\"fdsdihhji\",\r\n\"email\":\"fdsfdsfd\"\r\n}",
+							"raw": "{\n\"nome\":\"\",\n\"senha\":\"\",\n\"endereco\":\"\",\n\"cpf\":\"\",\n\"telefone\":\"\",\n\"email\":\"\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -72,7 +85,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/usuarios/1",
+							"raw": "http://localhost:8080/api/usuarios",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -80,20 +93,28 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"usuarios",
-								"1"
+								"usuarios"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "Update user",
 					"request": {
-						"method": "DELETE",
+						"method": "PUT",
 						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\"nome\":\"\",\r\n\"senha\":\"\",\r\n\"endereco\":\"\",\r\n\"cpf\":\"\",\r\n\"telefone\":\"\",\r\n\"email\":\"\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
 						"url": {
-							"raw": "http://localhost:8080/api/usuarios/1",
+							"raw": "http://localhost:8080/api/usuarios/{{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -102,7 +123,43 @@
 							"path": [
 								"api",
 								"usuarios",
-								"1"
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete user",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "name",
+									"value": "geladeira",
+									"type": "default"
+								},
+								{
+									"key": "price",
+									"value": "2000",
+									"type": "default"
+								}
+							]
+						},
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"{{id}}"
 							]
 						}
 					},
@@ -111,16 +168,59 @@
 			]
 		},
 		{
-			"name": "imoveis",
+			"name": "Imoveis",
 			"item": [
 				{
-					"name": "create",
+					"name": "Get all properties of a user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/usuarios/{{id}}/imoveis",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"usuarios",
+								"{{id}}",
+								"imoveis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get a property",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/api/imoveis/{{id}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"api",
+								"imoveis",
+								"{{id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add property to a user",
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"titulo\":\"casunha dia\" ,\r\n\"endereco\":\"pqpqpqpqp\" ,\r\n\"metros_quadrados_de_terreno\":5,\r\n\"quantidade_de_quartos\":4,\r\n\"quantidade_de_banheiros\":3,\r\n\"quantidade_de_vagas_de_garagem\":2,\r\n\"preco\":1000.01,\r\n\"dono\":\"3\"\r\n}",
+							"raw": "{\n\"titulo\":\"\" ,\n\"endereco\":\"\" ,\n\"metros_quadrados_de_terreno\":1,\n\"quantidade_de_quartos\":1,\n\"quantidade_de_banheiros\":1,\n\"quantidade_de_vagas_de_garagem\":1,\n\"preco\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -128,7 +228,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/imoveis",
+							"raw": "http://localhost:8080/api/usuarios/{{id}}/imoveis",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -136,6 +236,8 @@
 							"port": "8080",
 							"path": [
 								"api",
+								"usuarios",
+								"{{id}}",
 								"imoveis"
 							]
 						}
@@ -143,33 +245,13 @@
 					"response": []
 				},
 				{
-					"name": "read",
-					"request": {
-						"method": "GET",
-						"header": [],
-						"url": {
-							"raw": "http://localhost:8080/api/imoveis",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"api",
-								"imoveis"
-							]
-						}
-					},
-					"response": []
-				},
-				{
-					"name": "update",
+					"name": "update a property",
 					"request": {
 						"method": "PUT",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n\"titulo\":\"casunha dia\" ,\r\n\"endereco\":\"pqpqpqpqp\" ,\r\n\"metros_quadrados_de_terreno\":5,\r\n\"quantidade_de_quartos\":4,\r\n\"quantidade_de_banheiros\":3,\r\n\"quantidade_de_vagas_de_garagem\":2,\r\n\"preco\":1000.01,\r\n\"dono\":\"3\"\r\n}",
+							"raw": "{\n\"titulo\":\"\" ,\n\"endereco\":\"\" ,\n\"metros_quadrados_de_terreno\":1,\n\"quantidade_de_quartos\":1,\n\"quantidade_de_banheiros\":1,\n\"quantidade_de_vagas_de_garagem\":1,\n\"preco\":1\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -177,7 +259,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:8080/api/imoveis/1",
+							"raw": "http://localhost:8080/api/feedbacks/{{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -185,20 +267,20 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"imoveis",
-								"1"
+								"feedbacks",
+								"{{id}}"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "delete",
+					"name": "delete a property",
 					"request": {
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:8080/api/imoveis/10",
+							"raw": "http://localhost:8080/api/feedbacks/{{id}}",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -206,14 +288,20 @@
 							"port": "8080",
 							"path": [
 								"api",
-								"imoveis",
-								"10"
+								"feedbacks",
+								"{{id}}"
 							]
 						}
 					},
 					"response": []
 				}
 			]
+		}
+	],
+	"variable": [
+		{
+			"key": "id",
+			"value": "2"
 		}
 	]
 }
